@@ -22,11 +22,17 @@ public class SingleRedisConnection implements RedisConnection {
         jedis.close();
     }
 
+
     @Override
     public Boolean isConnected() {
         return jedis.isConnected();
     }
 
+
+    /**
+     * store the byte key and value into the hash table data structure in redis
+     * @return The result of hset
+     */
     @Override
     public Long hset(String key, String field, Serializable object) {
         return jedis.hset(key.getBytes(),
@@ -34,6 +40,10 @@ public class SingleRedisConnection implements RedisConnection {
                 SerializationUtils.serialize(object));
     }
 
+    /**
+     * Get the Object from the redis hash table
+     * @return The result of hset
+     */
     @Override
     public Object hget(String key, String field) {
         byte[] bytes = jedis.hget(key.getBytes(), field.getBytes());

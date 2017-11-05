@@ -11,8 +11,10 @@ import java.util.List;
  */
 public class RedisConfig {
 
+    //Configuration of Redis
     private ConnectionConfig connectionConfig;
 
+    //list of redis servers
     private List<RedisServer> redisServers;
 
 
@@ -32,7 +34,10 @@ public class RedisConfig {
         this.redisServers = redisServers;
     }
 
-
+    /**
+     * decode the json string to RedisConfig object
+     * @return The json String
+     */
     public static RedisConfig create(){
         String redisJson = readConfig();
         if (redisJson != null){
@@ -44,6 +49,11 @@ public class RedisConfig {
 
     private static final String REDIS_CONFIG = "redis.json";
 
+
+    /**
+     * Read the json string from the file
+     * @return The json String
+     */
     private static String readConfig(){
         try {
             //read config file from src folder

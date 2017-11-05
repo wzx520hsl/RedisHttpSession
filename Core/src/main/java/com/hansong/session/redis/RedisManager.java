@@ -14,6 +14,10 @@ public class RedisManager {
         private static final RedisManager instance = new RedisManager();
     }
 
+    /**
+     * Singleton to acquire an object of RedisManger
+     * @return The RedisManager object
+     */
     public static RedisManager getInstance() {
         return RedisManagerHolder.instance;
     }
@@ -23,6 +27,7 @@ public class RedisManager {
         if (redisConfig == null){
             throw new IllegalStateException("Read redis.json failed");
         }
+        //
         JedisPoolConfig jedisPoolConfig = getConfig(redisConfig);
         RedisConfig.RedisServer redisServer = redisConfig.getRedisServers().get(0);
         //if the redis have password
